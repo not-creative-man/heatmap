@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heatmap</title>
+    <style>
+        html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        canvas {
+            width: 300px;
+            height: 300px;
+        }
+        div {
+            display: flex;
+            flex-direction: column;
+        }
+        p{
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        .original{
+            display: flex;
+            flex-direction: row;
+        }
+        .canv, .heatmap, .legend{
+            margin: 10px;
+        }
+        input{
+            width: 150px;
+            height:auto;
+            margin: 10px 2.5px 0 2.5px;
+        }
+        .button{
+            display: flex;
+            flex-direction: row;
+        }
+        .text{
+            margin: 20px auto 5px 20px;
+        }
+        .hm{
+            display: flex;
+            flex-direction: row;
+        }
+        .legend{
+            margin-top: 44px;
+            height: 300px;
+            width: 50px;
+            outline: 1px solid black;
+        }
+        .color{
+            height: 33.3px;
+            width: auto;
+        }
+        .legend > div{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="txt">
+            <p class="text">В этой лабораторной работе реализовано сравнение преобразования в черно-белое изображение<br>
+            посредством использования инструментов фотошопа и применяя алгоритм преобразования в черно-белое изменением каждого пикселя<br>
+            на среднее арифметическое их красной, зеленой и голубой компонент. Также используя кнопку "Photoshop algorythm"<br>
+            можно получить преобразование в черно-белое простейшим алгоритмом, который используется фотошопом.<br>
+            Для получения каждого из форматов изображения нужно нажать на кнопку с интересующей обработкой<br>
+            После получения чб изображений от фотошопа и от алгоритма, нажмите на кнопку "Heatmap" для получения тепловой карты</p>
+        </div>
+        <div class="button">
+            <input type="button" value="Original image" id="button" onclick="chooseImage(this)"> 
+            <input type="button" value="Photoshop image" onclick="getPhOriginalImage()">
+            <input type="button" value="Grayscale" onclick="getGrayscale()">
+            <input type="button" value="Heatmap" onclick="getHeatmap()">
+            <input type="button" value="Photoshop algorithm" onclick="getPhImage()">
+        </div>
+        <div class="original">
+            <div class="canv">
+                <p>Original image</p>
+                <canvas id="original"></canvas>
+            </div>
+            <div class="canv">
+                <p>Photoshop image</p>
+                <canvas id="ph"></canvas>
+            </div>
+            <div class="canv">
+                <p>Grayscale image</p>
+                <canvas id="gs"></canvas>
+            </div>
+        </div>
+        <div class="hm">
+            <div class="heatmap">
+                <p>Heatmap</p>
+                <canvas id="heatmap"></canvas>
+            </div>
+            <div class="legend">
+                <div class="color" style="background-color: rgb(255, 0, 0);">more</div>
+                <div class="color" style="background-color: rgb(226, 55, 57);">16</div>
+                <div class="color" style="background-color: rgb(237, 152, 78);">14</div>
+                <div class="color" style="background-color: rgb(237, 181, 79);">12</div>
+                <div class="color" style="background-color: rgb(239, 202, 78);">10</div>
+                <div class="color" style="background-color: rgb(237, 223, 82);">8</div>
+                <div class="color" style="background-color: rgb(215, 232, 74);">6</div>
+                <div class="color" style="background-color: rgb(162, 218, 74);">4</div>
+                <div class="color" style="background-color: rgb(63, 190, 66);">2</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
